@@ -2,9 +2,12 @@
 
 set -e
 
-for f in *.symlink; do
+scriptdir=$(dirname "${BASH_SOURCE[0]}")
+
+for f in $scriptdir/*.symlink; do
+  filename=$(basename $f)
   filepath=$(realpath $f)
-  linkpath=$HOME/.${f%.*}
+  linkpath=$HOME/.${filename%.*}
   if [[ -e $linkpath ]]; then
     backuppath=$linkpath.$(date +%F.%T)
     read -r -p "$linkpath already exists. Overwrite? [y/N] " response
