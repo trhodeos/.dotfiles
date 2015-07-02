@@ -1,0 +1,96 @@
+"Forget compatibility with Vi. Who cares.
+set nocompatible
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'jceb/vim-orgmode'
+
+call vundle#end()
+
+"Display current cursor position in lower right corner.
+set ruler
+
+"Tab stuff
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+
+"Show command in bottom right portion of the screen
+set showcmd
+
+"Show lines numbers
+set number
+
+"Indent stuff
+set smartindent
+set autoindent
+
+"Search stuff
+set hlsearch      " highlight search terms
+set incsearch     " show search matches as you type
+set ignorecase    " ignore case when searching
+set smartcase     " ignore case if search pattern is all lowercase,
+                  "    case-sensitive otherwise
+
+"Enable code folding
+set foldenable
+
+"Hide mouse when typing
+set mousehide
+
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set wildignore=*.swp,*.bak,*.pyc,*.class
+set title                " change the terminal's title
+set visualbell           " don't beep
+set noerrorbells         " don't beep
+
+set nobackup
+set noswapfile
+
+set pastetoggle=<F2>
+
+" make ; take the place of :
+nnoremap ; :
+
+" disable arrow keys
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
+
+" Easy window navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+"Shortcut to fold tags with leader (usually \) + ft
+nnoremap <leader>ft Vatzf
+
+"Opens a vertical split and switches over (\v)
+nnoremap <leader>v <C-w>v<C-w>l
+
+"Saves time; maps the spacebar to colon
+nmap <space> :
+
+"Map escape key to jj -- much faster
+imap jj <esc>
+
+" Backups
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap// " swap files
+set backup " enable backup
+
+set showmatch " show matching brackets
+
+set backupskip=/tmp/*,/private/tmp/*" 
+
+syntax on
+filetype plugin indent on    " required

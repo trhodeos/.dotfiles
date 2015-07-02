@@ -1,0 +1,26 @@
+unbind C-b # unbind default leader key
+set -g prefix C-a
+
+# send c-a through to shell
+bind C-a send-prefix
+
+set -g default-terminal "screen-256color"
+
+set -g base-index 1
+
+bind-key r source-file ~/.tmux.conf\; display "Reloaded!"
+
+bind-key L last-window
+
+set-option -g history-limit 10000
+
+set-window-option -g utf8 on
+
+setw -g mode-mouse on
+set -g mouse-select-pane on
+set -g terminal-overrides 'xterm*:smcup@:rmcup@'
+
+bind-key h select-pane -L
+bind-key j select-pane -D
+bind-key k select-pane -U
+bind-key l select-pane -R
