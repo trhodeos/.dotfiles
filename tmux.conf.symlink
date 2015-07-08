@@ -1,26 +1,78 @@
-unbind C-b # unbind default leader key
-set -g prefix C-a
+# Tmux settings
+# List of plugins
+# Supports `github_username/repo` or full git repo URLs
+set -g @tpm_plugins '              \
+  tmux-plugins/tpm                 \
+  tmux-plugins/tmux-sensible       \
+  tmux-plugins/tmux-resurrect      \
+'
 
-# send c-a through to shell
-bind C-a send-prefix
+# disable alternate screen for xterm terminals
+set -ga terminal-overrides ',xterm*:smcup@:rmcup@'
 
-set -g default-terminal "screen-256color"
+# Set XTerm key bindings
+setw -g xterm-keys on
 
+# make tmux-resurrect work for capital letters, not lowercase.
+set -g @resurrect-save 'S'
+set -g @resurrect-restore 'R'
+
+# Set colors
+set-option -g default-terminal "xterm-256color"
+
+# Set reload key to r
+bind r source-file ~/.tmux.conf
+
+# Count sessions start at 1
 set -g base-index 1
 
-bind-key r source-file ~/.tmux.conf\; display "Reloaded!"
+# Use vim bindings
+setw -g mode-keys vi
 
-bind-key L last-window
+# enables mouse usage
+set-window-option -g mode-mouse on
+
+# remap prefix to Control + a
+set -g prefix C-a
+unbind C-b
+bind C-a send-prefix
+
+# Remap window navigation to vim
+unbind-key j
+bind-key j select-pane -D
+unbind-key k
+bind-key k select-pane -U
+unbind-key h
+bind-key h select-pane -L
+unbind-key l
+bind-key l select-pane -R
+
+# copy things in vim mode
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-selection
+
+# If we split windows, open in the same path.
+bind '"' split-window -c "#{pane_current_path}"
+bind % split-window -h -c "#{pane_current_path}"
+
+# Set the title bar
+set -g set-titles on
+set -g set-titles-string '#(whoami) :: #h'
+
+# Set status bar
+set -g status-utf8 on
+set -g status-bg black
+set -g status-fg white
+set -g status-interval 5
+set -g status-left-length 90
+set -g status-right-length 60
+set -g status-left "#[fg=Green]#(whoami)#[fg=white]::#[fg=blue]#(hostname
+-s)#[fg=white]"
+set -g status-justify left
+set -g status-right '#[fg=Cyan]#S #[fg=white]%a %d %b %R'
 
 set-option -g history-limit 10000
 
-set-window-option -g utf8 on
-
-setw -g mode-mouse on
-set -g mouse-select-pane on
-set -g terminal-overrides 'xterm*:smcup@:rmcup@'
-
-bind-key h select-pane -L
-bind-key j select-pane -D
-bind-key k select-pane -U
-bind-key l select-pane -R
+# Initializes TMUX plugin manager.
+# Keep this line at the very bottom of tmux.conf.
+run-shell '~/.tmux/plugins/tpm/tpm'

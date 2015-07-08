@@ -41,6 +41,11 @@ fi
 
 export EDITOR="/usr/bin/vim"
 
+if [ -d $HOME/go ]; then
+  export GOPATH=$HOME/go
+  export PATH="$PATH:$GOPATH/bin"
+fi
+
 if [[ "$(uname -a)" =~ "Darwin" && -f ~/.bashrc.osx ]]; then
   . ~/.bashrc.osx
 fi

@@ -1,96 +1,97 @@
-"Forget compatibility with Vi. Who cares.
-set nocompatible
 filetype off
+set nocompatible
 
-" set the runtime path to include Vundle and initialize
+" External plugins
+" vundle set up
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'jceb/vim-orgmode'
+
+" Personal plugins
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-easymotion'
+
+Plugin 'xolox/vim-misc'
+Plugin 'Valloric/MatchTagAlways'
+
+Plugin 'Yggdroot/indentLine'
+Plugin 'Raimondi/delimitMate'
+
+Plugin 'ntpeters/vim-better-whitespace'
+
+Plugin 'tpope/vim-dispatch'
 
 call vundle#end()
 
-"Display current cursor position in lower right corner.
-set ruler
+" % for tags
+source $VIMRUNTIME/macros/matchit.vim
 
-"Tab stuff
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
+" plugin-specific settings
+" ctrlp
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn\|\.git5_specs$\|review$',
+  \ 'file': '\.exe$\|\.so$\|\.dll$',
+  \ 'link': 'blaze-bin\|blaze-genfiles\|blaze-google3\|blaze-out\|blaze-testlogs\|READONLY$',
+  \ }
 
-"Show command in bottom right portion of the screen
-set showcmd
+" indentLine
+let g:indentLine_color_term = 239
+let g:indentLine_color_gui = '#09AA08'
+let g:indentLine_char = '│'
 
-"Show lines numbers
+" delimitMate
+let delimitMate_expand_cr = 1
+
+" some key stroke shortcuts
+inoremap jj <ESC>
+let mapleader = ","
+nmap ; :
+noremap ;; ;
+
+syntax enable
+
+if filereadable(glob("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
+" copy file path
+nmap ,cp :let @+=expand("%:p")<CR>
+" search settings
+set ignorecase
+set smartcase
+
+" 80chars by style-guide
+set colorcolumn=80
+
+augroup filetype_java
+  autocmd!
+  autocmd FileType java set colorcolumn=100
+augroup END
+
+" Add line numbers to side
 set number
 
-"Indent stuff
-set smartindent
-set autoindent
+" Hightlight search results
+set hlsearch
 
-"Search stuff
-set hlsearch      " highlight search terms
-set incsearch     " show search matches as you type
-set ignorecase    " ignore case when searching
-set smartcase     " ignore case if search pattern is all lowercase,
-                  "    case-sensitive otherwise
+" Show tabs and eols
+set list!
+set listchars=tab:▸\ ,eol:¬
 
-"Enable code folding
-set foldenable
+" Add the ability to GoTo definition under cursor.
+nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 
-"Hide mouse when typing
-set mousehide
+" Use javascript formatter for json, because the actual json formatter is gross.
+autocmd BufNewFile,BufRead *.json set ft=javascript
 
-set history=1000         " remember more commands and search history
-set undolevels=1000      " use many muchos levels of undo
-set wildignore=*.swp,*.bak,*.pyc,*.class
-set title                " change the terminal's title
-set visualbell           " don't beep
-set noerrorbells         " don't beep
+" Automatically cd into the directory of the file we are currently editing.
+autocmd BufRead * cd %:p:h
 
-set nobackup
-set noswapfile
+set pastetoggle=<F2>  " hit F2 to disable auto-indent when pasting in data
 
-set pastetoggle=<F2>
+" nicer tab completion for file accessing
+set wildmode=longest,list,full
+set wildmenu"
 
-" make ; take the place of :
-nnoremap ; :
-
-" disable arrow keys
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-" Easy window navigation
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-
-"Shortcut to fold tags with leader (usually \) + ft
-nnoremap <leader>ft Vatzf
-
-"Opens a vertical split and switches over (\v)
-nnoremap <leader>v <C-w>v<C-w>l
-
-"Saves time; maps the spacebar to colon
-nmap <space> :
-
-"Map escape key to jj -- much faster
-imap jj <esc>
-
-" Backups
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap// " swap files
-set backup " enable backup
-
-set showmatch " show matching brackets
-
-set backupskip=/tmp/*,/private/tmp/*" 
-
-syntax on
-filetype plugin indent on    " required
+filetype plugin indent on
