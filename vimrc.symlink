@@ -39,6 +39,8 @@ call vundle#end()
 " % for tags
 source $VIMRUNTIME/macros/matchit.vim
 
+set clipboard=unnamedplus
+
 " plugin-specific settings
 " ctrlp
 let g:ctrlp_use_caching=0
