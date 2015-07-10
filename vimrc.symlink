@@ -24,6 +24,8 @@ Plugin 'tpope/vim-dispatch'
 
 Plugin 'fatih/vim-go'
 
+Plugin 'mileszs/ack.vim'
+
 call vundle#end()
 
 " % for tags
@@ -88,9 +90,6 @@ nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 
 " Use javascript formatter for json, because the actual json formatter is gross.
 autocmd BufNewFile,BufRead *.json set ft=javascript
-
-" Automatically cd into the directory of the file we are currently editing.
-autocmd BufRead * cd %:p:h
 
 set pastetoggle=<F2>  " hit F2 to disable auto-indent when pasting in data
 
