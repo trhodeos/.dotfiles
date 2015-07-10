@@ -39,7 +39,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
 
-export EDITOR="/usr/bin/vim"
+export EDITOR="vim"
 
 if [ -d $HOME/go ]; then
   export GOPATH=$HOME/go

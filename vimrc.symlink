@@ -15,6 +15,11 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'xolox/vim-misc'
 Plugin 'Valloric/MatchTagAlways'
 
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+
+Plugin 'Valloric/YouCompleteMe'
+
 Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
 
@@ -25,6 +30,7 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'fatih/vim-go'
 
 Plugin 'mileszs/ack.vim'
+Plugin 'ervandew/supertab'
 
 call vundle#end()
 
@@ -46,8 +52,14 @@ let g:indentLine_color_term = 239
 let g:indentLine_color_gui = '#09AA08'
 let g:indentLine_char = '│'
 
-" delimitMate
-let delimitMate_expand_cr = 1
+let g:EclimCompletionMethod = 'omnifunc'
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " some key stroke shortcuts
 inoremap jj <ESC>
@@ -66,6 +78,9 @@ nmap ,cp :let @+=expand("%:p")<CR>
 " search settings
 set ignorecase
 set smartcase
+
+set smarttab
+set expandtab
 
 " 80chars by style-guide
 set colorcolumn=80
