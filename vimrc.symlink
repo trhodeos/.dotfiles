@@ -18,8 +18,6 @@ Plugin 'Valloric/MatchTagAlways'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 
-Plugin 'Valloric/YouCompleteMe'
-
 Plugin 'Yggdroot/indentLine'
 Plugin 'Raimondi/delimitMate'
 
@@ -31,6 +29,10 @@ Plugin 'fatih/vim-go'
 
 Plugin 'mileszs/ack.vim'
 Plugin 'ervandew/supertab'
+
+if $HOME !~ '.*google.*'
+  Plugin 'Valloric/YouCompleteMe'
+endif
 
 call vundle#end()
 
