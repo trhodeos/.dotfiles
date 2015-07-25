@@ -30,6 +30,8 @@ Plugin 'fatih/vim-go'
 Plugin 'mileszs/ack.vim'
 Plugin 'ervandew/supertab'
 
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+
 if $HOME !~ '.*google.*'
   Plugin 'Valloric/YouCompleteMe'
 endif
@@ -115,5 +117,12 @@ set pastetoggle=<F2>  " hit F2 to disable auto-indent when pasting in data
 " nicer tab completion for file accessing
 set wildmode=longest,list,full
 set wildmenu"
+
+" Relative edits.
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
 
 filetype plugin indent on
