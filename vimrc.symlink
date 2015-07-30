@@ -32,6 +32,8 @@ Plugin 'ervandew/supertab'
 
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
+Plugin 'tpope/vim-surround'
+
 if $HOME !~ '.*google.*'
   Plugin 'Valloric/YouCompleteMe'
 endif
