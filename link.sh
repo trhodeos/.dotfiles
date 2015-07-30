@@ -6,7 +6,7 @@ scriptdir=$(dirname "${BASH_SOURCE[0]}")
 
 for f in $scriptdir/*.symlink; do
   filename=$(basename $f)
-  filepath=$(realpath $f)
+  filepath=$(cd $(dirname $f) && pwd -P)/$filename
   linkpath=$HOME/.${filename%.*}
   if [[ -e $linkpath ]]; then
     backuppath=$linkpath.$(date +%F.%T)
