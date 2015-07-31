@@ -1,0 +1,6 @@
+[user]
+	name = Tyler Rhodes
+[push]
+	default = simple
+[alias]
+	st = status
