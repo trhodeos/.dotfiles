@@ -34,6 +34,8 @@ Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 
 Plugin 'tpope/vim-surround'
 
+Plugin 'maxbrunsfeld/vim-yankstack'
+
 if $HOME !~ '.*google.*'
   Plugin 'Valloric/YouCompleteMe'
 endif
