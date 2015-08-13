@@ -36,6 +36,8 @@ Plugin 'tpope/vim-surround'
 
 Plugin 'maxbrunsfeld/vim-yankstack'
 
+Plugin 'christoomey/vim-tmux-navigator'
+
 if $HOME !~ '.*google.*'
   Plugin 'Valloric/YouCompleteMe'
 endif
