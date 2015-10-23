@@ -40,6 +40,9 @@ Plugin 'christoomey/vim-tmux-navigator'
 
 if $HOME !~ '.*google.*'
   Plugin 'Valloric/YouCompleteMe'
+
+  Plugin 'google/vim-maktaba'
+  Plugin 'google/vim-codefmt'
 endif
 
 call vundle#end()
@@ -93,6 +96,7 @@ set smartcase
 
 set smarttab
 set expandtab
+
 
 " 80chars by style-guide
 set colorcolumn=80
