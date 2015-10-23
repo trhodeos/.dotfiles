@@ -77,8 +77,8 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " some key stroke shortcuts
-inoremap jj <ESC>
-let mapleader = ","
+inoremap jk <ESC>
+let mapleader = "\<SPACE>"
 nmap ; :
 noremap ;; ;
 
