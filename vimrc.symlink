@@ -15,11 +15,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'xolox/vim-misc'
 Plugin 'Valloric/MatchTagAlways'
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-
 Plugin 'Yggdroot/indentLine'
-Plugin 'Raimondi/delimitMate'
 
 Plugin 'ntpeters/vim-better-whitespace'
 
@@ -30,13 +26,11 @@ Plugin 'fatih/vim-go'
 Plugin 'mileszs/ack.vim'
 Plugin 'ervandew/supertab'
 
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-
 Plugin 'tpope/vim-surround'
 
 Plugin 'maxbrunsfeld/vim-yankstack'
 
-Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'altercation/vim-colors-solarized'
 
 if $HOME !~ '.*google.*'
   Plugin 'Valloric/YouCompleteMe'
@@ -80,6 +74,10 @@ nmap ; :
 noremap ;; ;
 
 syntax enable
+set background=dark
+set t_Co=16
+let g:solarized_termcolors=16
+colorscheme solarized
 
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
