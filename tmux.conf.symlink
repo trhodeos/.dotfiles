@@ -58,7 +58,7 @@ bind % split-window -h -c "#{pane_current_path}"
 
 # Set the title bar
 set -g set-titles on
-set -g set-titles-string '#(whoami) :: #(hostname -s)'
+set -g set-titles-string '#S'
 
 # Set status bar
 set -g status-utf8 on
@@ -67,9 +67,9 @@ set -g status-fg white
 set -g status-interval 5
 set -g status-left-length 90
 set -g status-right-length 60
-set -g status-left "#[fg=Green]#(whoami)#[fg=white]::#[fg=blue]#(hostname)#[fg=white] "
+set -g status-left '#[fg=Cyan]#S'
 set -g status-justify left
-set -g status-right '#[fg=Cyan]#S #[fg=white]%a %d %b %R'
+set -g status-right '#[fg=white]%a %d %b %R'
 
 set-option -g history-limit 10000
 
