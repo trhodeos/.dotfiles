@@ -50,6 +50,8 @@ call vundle#end()
 " % for tags
 source $VIMRUNTIME/macros/matchit.vim
 
+set backspace=indent,eol,start
+
 set clipboard=unnamedplus
 
 " plugin-specific settings
