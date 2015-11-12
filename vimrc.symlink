@@ -64,16 +64,26 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'blaze-bin\|blaze-genfiles\|blaze-google3\|blaze-out\|blaze-testlogs\|READONLY$',
   \ }
 
-" indentLine
-let g:indentLine_color_term = 239
-let g:indentLine_color_gui = '#09AA08'
-let g:indentLine_char = '│'
+function EnableNormalTextChrome()
+  " indentLine
+  let g:indentLine_color_term = 239
+  let g:indentLine_color_gui = '#09AA08'
+  let g:indentLine_char = '│'
+  " Add line numbers to side
+  set number
+  " Show tabs and eols
+  set list!
+  set listchars=tab:▸\ ,eol:¬
+endfunction
 
-let g:EclimCompletionMethod = 'omnifunc'
+function DisableNormalTextChrome()
+  let g:indentLine_char = ''
+  set nonumber
+  set nolist!
+endfunction
 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+call EnableNormalTextChrome()
+
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
@@ -103,7 +113,6 @@ set smartcase
 set smarttab
 set expandtab
 
-
 " 80chars by style-guide
 set colorcolumn=80
 
@@ -112,15 +121,9 @@ augroup filetype_java
   autocmd FileType java set colorcolumn=100
 augroup END
 
-" Add line numbers to side
-set number
-
 " Hightlight search results
 set hlsearch
 
-" Show tabs and eols
-set list!
-set listchars=tab:▸\ ,eol:¬
 
 " Add the ability to GoTo definition under cursor.
 nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
