@@ -15,15 +15,17 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'xolox/vim-misc'
 Plugin 'Valloric/MatchTagAlways'
 
+" Display indention-levels as characters.
 Plugin 'Yggdroot/indentLine'
 
+" Show trailing whitespace
 Plugin 'ntpeters/vim-better-whitespace'
 
 Plugin 'tpope/vim-dispatch'
 
-Plugin 'fatih/vim-go'
-
+" Ack search integration.
 Plugin 'mileszs/ack.vim'
+
 Plugin 'ervandew/supertab'
 
 Plugin 'tpope/vim-surround'
@@ -48,6 +50,8 @@ call vundle#end()
 source $VIMRUNTIME/macros/matchit.vim
 
 set backspace=indent,eol,start
+
+let g:vimwiki_list = [{'path': '~/notes/vimwiki'}]
 
 " plugin-specific settings
 " ctrlp

@@ -7,6 +7,8 @@ set -g @tpm_plugins '              \
   tmux-plugins/tmux-resurrect      \
 '
 
+new-session
+
 # disable alternate screen for xterm terminals
 set -ga terminal-overrides ',xterm*:smcup@:rmcup@'
 
