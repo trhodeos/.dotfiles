@@ -24,6 +24,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+#alias vim='vim --servername server'
+
 export TERM=xterm-256color
 
 # Alias definitions.
@@ -55,3 +57,5 @@ fi
 if [ -f ~/.bashrc.local ]; then
   . ~/.bashrc.local
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

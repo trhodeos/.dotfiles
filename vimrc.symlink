@@ -34,6 +34,7 @@ Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'vim-scripts/vimwiki'
 
+Plugin 'leafgarland/typescript-vim'
 if $HOME !~ '.*google.*'
   Plugin 'Valloric/YouCompleteMe'
 
@@ -47,8 +48,6 @@ call vundle#end()
 source $VIMRUNTIME/macros/matchit.vim
 
 set backspace=indent,eol,start
-
-set clipboard=unnamedplus
 
 " plugin-specific settings
 " ctrlp
@@ -85,10 +84,12 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " some key stroke shortcuts
-inoremap jk <ESC>
+inoremap jj <ESC>
 let mapleader = "\<SPACE>"
 nmap ; :
 noremap ;; ;
+
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
 syntax enable
 set background=dark
