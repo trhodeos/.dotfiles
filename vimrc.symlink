@@ -8,7 +8,6 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-" Personal plugins
 Plugin 'kien/ctrlp.vim'
 Plugin 'Lokaltog/vim-easymotion'
 
@@ -21,14 +20,14 @@ Plugin 'Yggdroot/indentLine'
 " Show trailing whitespace
 Plugin 'ntpeters/vim-better-whitespace'
 
-Plugin 'tpope/vim-dispatch'
-
 " Ack search integration.
 Plugin 'mileszs/ack.vim'
 
 Plugin 'ervandew/supertab'
 
 Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-dispatch'
 
 Plugin 'maxbrunsfeld/vim-yankstack'
 
@@ -36,7 +35,6 @@ Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'vim-scripts/vimwiki'
 
-Plugin 'leafgarland/typescript-vim'
 if $HOME !~ '.*google.*'
   Plugin 'Valloric/YouCompleteMe'
 
