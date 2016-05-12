@@ -59,3 +59,9 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/usr/local/google/home/tylerrhodes/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/usr/local/google/home/tylerrhodes/google-cloud-sdk/completion.bash.inc'
