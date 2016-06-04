@@ -23,21 +23,21 @@ Plugin 'ntpeters/vim-better-whitespace'
 
 Plugin 'tpope/vim-dispatch'
 
-" Ack search integration.
-Plugin 'mileszs/ack.vim'
-
 Plugin 'ervandew/supertab'
 
 Plugin 'tpope/vim-surround'
-
-Plugin 'maxbrunsfeld/vim-yankstack'
 
 Plugin 'altercation/vim-colors-solarized'
 
 Plugin 'vim-scripts/vimwiki'
 
 if $HOME !~ '.*google.*'
+  " Ack search integration.
+  Plugin 'mileszs/ack.vim'
+
   Plugin 'Valloric/YouCompleteMe'
+
+  Plugin 'davidzchen/vim-bazel'
 
   Plugin 'google/vim-maktaba'
   Plugin 'google/vim-codefmt'
@@ -50,7 +50,7 @@ source $VIMRUNTIME/macros/matchit.vim
 
 set backspace=indent,eol,start
 
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 let g:vimwiki_list = [{'path': '~/notes/vimwiki'}]
 
