@@ -16,6 +16,10 @@ shopt -s histappend
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+set -o vi
+# Still allow alt+. to insert last argument.
+bind -m vi-command ".":insert-last-argument
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -23,6 +27,10 @@ shopt -s checkwinsize
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
+alias r='fc -s'
+
+#alias vim='vim --servername server'
 
 export TERM=xterm-256color
 
@@ -55,3 +63,11 @@ fi
 if [ -f ~/.bashrc.local ]; then
   . ~/.bashrc.local
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/usr/local/google/home/tylerrhodes/google-cloud-sdk/path.bash.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/usr/local/google/home/tylerrhodes/google-cloud-sdk/completion.bash.inc'
