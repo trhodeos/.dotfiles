@@ -20,16 +20,12 @@ Plugin 'Yggdroot/indentLine'
 " Show trailing whitespace
 Plugin 'ntpeters/vim-better-whitespace'
 
-" Ack search integration.
-Plugin 'mileszs/ack.vim'
-
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-dispatch'
 
 Plugin 'ervandew/supertab'
 
-Plugin 'maxbrunsfeld/vim-yankstack'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-fugitive'
 
 Plugin 'altercation/vim-colors-solarized'
 
@@ -38,7 +34,12 @@ Plugin 'vim-scripts/vimwiki'
 Plugin 'scrooloose/syntastic'
 
 if $HOME !~ '.*google.*'
+  " Ack search integration.
+  Plugin 'mileszs/ack.vim'
+
   Plugin 'Valloric/YouCompleteMe'
+
+  Plugin 'davidzchen/vim-bazel'
 
   Plugin 'google/vim-maktaba'
   Plugin 'google/vim-codefmt'
@@ -50,6 +51,8 @@ call vundle#end()
 source $VIMRUNTIME/macros/matchit.vim
 
 set backspace=indent,eol,start
+
+set clipboard=unnamed
 
 let g:vimwiki_list = [{'path': '~/notes/vimwiki'}]
 
