@@ -34,6 +34,10 @@ alias r='fc -s'
 
 export TERM=xterm-256color
 
+# Fix irssi-in-tmux scrolling issue.
+# See: https://www.wisdomandwonder.com/link/7784/making-irssi-refresh-work-with-tmux
+alias irssi='TERM=screen-256color irssi'
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
