@@ -6,11 +6,18 @@
 # ... or force ignoredups and ignorespace
 HISTCONTROL=ignoredups:ignorespace
 
-export HISTFILESIZE=1000000000
-export HISTSIZE=1000000
-export HISTTIMEFORMAT="%F %T "
+# Undocumented feature which sets the size to "unlimited".
+# http://stackoverflow.com/questions/9457233/unlimited-bash-history
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
 shopt -s cmdhist
 shopt -s histappend
+# Change the file location because certain bash sessions truncate .bash_history
+# file upon close.
+# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
+export HISTFILE=~/.bash_eternal_history
+export PROMPT_COMMAND="history -a; history -n; $PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -30,13 +37,7 @@ alias l='ls -CF'
 
 alias r='fc -s'
 
-#alias vim='vim --servername server'
-
-export TERM=xterm-256color
-
-# Fix irssi-in-tmux scrolling issue.
-# See: https://www.wisdomandwonder.com/link/7784/making-irssi-refresh-work-with-tmux
-alias irssi='TERM=screen-256color irssi'
+export TERM=screen-256color
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -69,9 +70,3 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-# The next line updates PATH for the Google Cloud SDK.
-source '/usr/local/google/home/tylerrhodes/google-cloud-sdk/path.bash.inc'
-
-# The next line enables shell command completion for gcloud.
-source '/usr/local/google/home/tylerrhodes/google-cloud-sdk/completion.bash.inc'
