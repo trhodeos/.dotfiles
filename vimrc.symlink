@@ -8,9 +8,6 @@ call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
 
-Plugin 'kien/ctrlp.vim'
-Plugin 'Lokaltog/vim-easymotion'
-
 Plugin 'xolox/vim-misc'
 Plugin 'Valloric/MatchTagAlways'
 
@@ -28,8 +25,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
 
 Plugin 'altercation/vim-colors-solarized'
-
-Plugin 'vim-scripts/vimwiki'
 
 Plugin 'scrooloose/syntastic'
 
@@ -53,8 +48,6 @@ source $VIMRUNTIME/macros/matchit.vim
 set backspace=indent,eol,start
 
 set clipboard=unnamed
-
-let g:vimwiki_list = [{'path': '~/notes/vimwiki'}]
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -107,18 +100,13 @@ noremap ;; ;
 
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
-syntax enable
-set t_Co=256
-set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
-
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 endif
 
 " copy file path
 nmap ,cp :let @+=expand("%:p")<CR>
+
 " search settings
 set ignorecase
 set smartcase
@@ -145,11 +133,9 @@ nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 " Use javascript formatter for json, because the actual json formatter is gross.
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
-set pastetoggle=<F2>  " hit F2 to disable auto-indent when pasting in data
-
 " nicer tab completion for file accessing
 set wildmode=longest,list,full
-set wildmenu"
+set wildmenu
 
 " Relative edits.
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
@@ -157,5 +143,11 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+
+syntax enable
+set t_Co=256
+set background=dark
+let g:solarized_termcolors=256
+colorscheme solarized
 
 filetype plugin indent on
