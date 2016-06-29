@@ -30,11 +30,6 @@ bind -m vi-command ".":insert-last-argument
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 alias r='fc -s'
 
 export TERM=screen-256color
@@ -55,11 +50,6 @@ fi
 
 export VISUAL=vim
 export EDITOR=$VISUAL
-
-if [ -d $HOME/go ]; then
-  export GOPATH=$HOME/go
-  export PATH="$PATH:$GOPATH/bin"
-fi
 
 if [[ "$(uname -a)" =~ "Darwin" && -f ~/.bashrc.osx ]]; then
   . ~/.bashrc.osx
