@@ -43,7 +43,6 @@ bind-key h select-pane -L
 unbind-key l
 bind-key l select-pane -R
 
-
 # copy things in vim mode
 bind-key -t vi-copy 'v' begin-selection
 bind-key -t vi-copy 'y' copy-selection
