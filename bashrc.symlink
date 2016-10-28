@@ -7,7 +7,7 @@
 export HISTCONTROL=ignoredups:ignorespace
 export HISTTIMEFORMAT="[%F %T] "
 
-[[ -d ~/.history ]] || mkdir --mode=0700 ~/.history
+[[ -d ~/.history ]] || mkdir ~/.history
 [[ -d ~/.history ]] && chmod 0700 ~/.history
 export HISTFILE=~/.history/history.$$
 # close any old history file by zeroing HISTFILESIZE
