@@ -31,6 +31,8 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+Plug 'vim-syntastic/syntastic'
+
 if $HOME !~ '.*google.*'
   " Ack search integration.
   Plug 'mileszs/ack.vim'
@@ -160,8 +162,29 @@ nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 "-------------------------------------------------------------------------------
-" FZF
+" fzf
 "-------------------------------------------------------------------------------
 nnoremap <silent> <Leader><Leader> :FZF -m<CR>
+
+nnoremap <silent> <Leader>s :call fzf#run({ 'tmux_height': winheight('.') / 2, 'sink': 'botright split' })<CR>
+nnoremap <silent> <Leader>v :call fzf#run({ 'tmux_width': winwidth('.') / 2, 'sink': 'vertical botright split' })<CR>
+
+function! BufList()
+  redir => ls
+  silent ls
+  redir END
+  return split(ls, '\n')
+endfunction
+
+function! BufOpen(e)
+  execute 'buffer '. matchstr(a:e, '^[ 0-9]*')
+endfunction
+
+nnoremap <silent> <Leader><Enter> :call fzf#run({
+\   'source':      reverse(BufList()),
+\   'sink':        function('BufOpen'),
+\   'options':     '+m',
+\   'tmux_height': '40%'
+\ })<CR>
 
 filetype plugin indent on
