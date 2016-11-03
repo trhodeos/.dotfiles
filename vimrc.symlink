@@ -2,49 +2,50 @@ filetype off
 set nocompatible
 
 " External plugins
-" vundle set up
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" vim-plug set up
+call plug#begin('~/.vim/plugged')
 
-Plugin 'gmarik/Vundle.vim'
+Plug 'gmarik/Vundle.vim'
 
-Plugin 'xolox/vim-misc'
-Plugin 'Valloric/MatchTagAlways'
+Plug 'xolox/vim-misc'
+Plug 'Valloric/MatchTagAlways'
 
 " Display indention-levels as characters.
-Plugin 'Yggdroot/indentLine'
+Plug 'Yggdroot/indentLine'
 
 " Show trailing whitespace
-Plugin 'ntpeters/vim-better-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 
-Plugin 'tpope/vim-dispatch'
+Plug 'tpope/vim-dispatch'
 
-Plugin 'ervandew/supertab'
+Plug 'ervandew/supertab'
 
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 
-Plugin 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
-Plugin 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 
-Plugin 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki'
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 if $HOME !~ '.*google.*'
   " Ack search integration.
-  Plugin 'mileszs/ack.vim'
+  Plug 'mileszs/ack.vim'
 
-  Plugin 'Valloric/YouCompleteMe'
+  Plug 'Valloric/YouCompleteMe'
 
-  Plugin 'davidzchen/vim-bazel'
+  Plug 'davidzchen/vim-bazel'
 
-  Plugin 'google/vim-maktaba'
-  Plugin 'google/vim-codefmt'
+  Plug 'google/vim-maktaba'
+  Plug 'google/vim-codefmt'
 endif
 
-call vundle#end()
+call plug#end()
 
 " % for tags
 source $VIMRUNTIME/macros/matchit.vim
@@ -56,24 +57,6 @@ set clipboard=unnamed
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-let g:vimwiki_list = [{'path': '~/notes/vimwiki',
-                     \ 'syntax': 'markdown', 'ext': '.md'}]
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" plugin-specific settings
-" ctrlp
-let g:ctrlp_use_caching=0
-set wildignore+=*/build/**
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn\|\.git5_specs$\|review$',
-  \ 'file': '\.exe$\|\.so$\|\.dll$',
-  \ 'link': 'blaze-bin\|blaze-genfiles\|blaze-google3\|blaze-out\|blaze-testlogs\|READONLY$',
-  \ }
 
 function EnableNormalTextChrome()
   " indentLine
@@ -95,21 +78,7 @@ endfunction
 
 call EnableNormalTextChrome()
 
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" some key stroke shortcuts
-inoremap jj <ESC>
 let mapleader = "\<SPACE>"
-nmap ; :
-noremap ;; ;
-
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-
-if filereadable(glob("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
 
 " copy file path
 nmap ,cp :let @+=expand("%:p")<CR>
@@ -129,14 +98,6 @@ augroup filetype_java
   autocmd FileType java set colorcolumn=100
 augroup END
 
-" Hightlight search results
-set hlsearch
-
-let g:EclimCompletionMethod = 'omnifunc'
-
-" Add the ability to GoTo definition under cursor.
-nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
-
 " Use javascript formatter for json, because the actual json formatter is gross.
 autocmd BufNewFile,BufRead *.json set ft=javascript
 
@@ -151,10 +112,58 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
+if filereadable(glob("~/.vimrc.local"))
+  source ~/.vimrc.local
+endif
+
+"-------------------------------------------------------------------------------
+" Color set up.
+"-------------------------------------------------------------------------------
 syntax enable
 set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
+
+"###############################################################################
+" Plugins
+"###############################################################################
+
+"-------------------------------------------------------------------------------
+" VimWiki
+"-------------------------------------------------------------------------------
+let g:vimwiki_list = [{'path': '~/notes/vimwiki',
+                     \ 'syntax': 'markdown', 'ext': '.md'}]
+
+"-------------------------------------------------------------------------------
+" Syntastic
+"-------------------------------------------------------------------------------
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+"-------------------------------------------------------------------------------
+" YCM
+"-------------------------------------------------------------------------------
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+
+let g:EclimCompletionMethod = 'omnifunc'
+
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+
+" Add the ability to GoTo definition under cursor.
+nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
+
+"-------------------------------------------------------------------------------
+" SuperTab
+"-------------------------------------------------------------------------------
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+"-------------------------------------------------------------------------------
+" FZF
+"-------------------------------------------------------------------------------
+nnoremap <silent> <Leader><Leader> :FZF -m<CR>
 
 filetype plugin indent on
