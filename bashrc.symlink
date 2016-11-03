@@ -4,18 +4,20 @@
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # ... or force ignoredups and ignorespace
-export HISTCONTROL=ignoredups:ignorespace
+export HISTCONTROL=ignoredups:ignorespace:erasedups
 export HISTTIMEFORMAT="[%F %T] "
+# When the shell exits, append to the history file instead of overwriting it
+shopt -s histappend
 
 [[ -d ~/.history ]] || mkdir --mode=0700 ~/.history
 [[ -d ~/.history ]] && chmod 0700 ~/.history
-export HISTFILE=~/.history/history.$$
-# close any old history file by zeroing HISTFILESIZE
+export HISTFILE=~/.history/main
 export HISTFILESIZE=0
 # Undocumented feature which sets the size to "unlimited".
 # http://stackoverflow.com/questions/9457233/unlimited-bash-history
 export HISTFILESIZE=
 export HISTSIZE=
+export PROMPT_COMMAND="history -a; history -c; history -r"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -56,3 +58,5 @@ fi
 if [ -f ~/.bashrc.local ]; then
   . ~/.bashrc.local
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
