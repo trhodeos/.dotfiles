@@ -33,6 +33,8 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'vim-syntastic/syntastic'
 
+Plug 'junegunn/vim-peekaboo'
+
 if $HOME !~ '.*google.*'
   " Ack search integration.
   Plug 'mileszs/ack.vim'
