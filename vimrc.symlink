@@ -35,6 +35,8 @@ Plug 'vim-syntastic/syntastic'
 
 Plug 'junegunn/vim-peekaboo'
 
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
+
 if $HOME !~ '.*google.*'
   " Ack search integration.
   Plug 'mileszs/ack.vim'
