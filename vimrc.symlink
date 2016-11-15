@@ -21,6 +21,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'ervandew/supertab'
 
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
@@ -34,6 +35,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'vim-syntastic/syntastic'
 
 Plug 'junegunn/vim-peekaboo'
+
+Plug 'kana/vim-textobj-user'
+Plug 'Julian/vim-textobj-variable-segment'
 
 if $HOME !~ '.*google.*'
   " Ack search integration.
