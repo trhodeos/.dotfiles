@@ -17,7 +17,7 @@ export HISTFILESIZE=0
 # http://stackoverflow.com/questions/9457233/unlimited-bash-history
 export HISTFILESIZE=
 export HISTSIZE=
-export PROMPT_COMMAND="history -a; history -c; history -r"
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -49,7 +49,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 export VISUAL=vim
-export EDITOR=$VISUAL
+export EDITOR=vim
 
 if [[ "$(uname -a)" =~ "Darwin" && -f ~/.bashrc.osx ]]; then
   . ~/.bashrc.osx
