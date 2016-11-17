@@ -5,8 +5,6 @@ set nocompatible
 " vim-plug set up
 call plug#begin('~/.vim/plugged')
 
-Plug 'gmarik/Vundle.vim'
-
 Plug 'xolox/vim-misc'
 Plug 'Valloric/MatchTagAlways'
 
@@ -39,6 +37,9 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'kana/vim-textobj-user'
 Plug 'Julian/vim-textobj-variable-segment'
 
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+
 if $HOME !~ '.*google.*'
   " Ack search integration.
   Plug 'mileszs/ack.vim'
@@ -49,16 +50,26 @@ if $HOME !~ '.*google.*'
 
   Plug 'google/vim-maktaba'
   Plug 'google/vim-codefmt'
+  Plug 'google/vim-glaive'
 endif
 
 call plug#end()
+
+if $HOME !~ '.*google.*'
+  call glaive#Install()
+  Glaive codefmt plugin[mappings]
+
+  " Some tab/space settings.
+  set tabstop=8 shiftwidth=2 softtabstop=2 expandtab
+endif
+
 
 " % for tags
 source $VIMRUNTIME/macros/matchit.vim
 
 set backspace=indent,eol,start
 
-set clipboard=unnamed
+"set clipboard=unnamed
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
