@@ -51,6 +51,13 @@ fi
 export VISUAL=vim
 export EDITOR=vim
 
+# fhe - repeat history edit
+writecmd (){ perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }' ; }
+
+fh() {
+  cat $HOME/.history/* | grep -v -e '#.*' | fzf +s --tac | writecmd
+}
+
 if [[ "$(uname -a)" =~ "Darwin" && -f ~/.bashrc.osx ]]; then
   . ~/.bashrc.osx
 fi
