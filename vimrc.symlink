@@ -64,6 +64,9 @@ if $HOME !~ '.*google.*'
   set tabstop=8 shiftwidth=2 softtabstop=2 expandtab
 endif
 
+" Allow editing of crontab files.
+set backupskip=/tmp/*,/private/tmp/*
+
 
 " % for tags
 source $VIMRUNTIME/macros/matchit.vim
