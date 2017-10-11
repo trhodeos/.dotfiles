@@ -41,6 +41,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
 
+Plug 'vimwiki/vimwiki'
+
 if $HOME !~ '.*google.*'
   " Ack search integration.
   Plug 'mileszs/ack.vim'
@@ -67,6 +69,7 @@ endif
 " Allow editing of crontab files.
 set backupskip=/tmp/*,/private/tmp/*
 
+let g:vimwiki_list = [{'path': '~/drive/vimwiki/'}]
 
 " % for tags
 source $VIMRUNTIME/macros/matchit.vim
