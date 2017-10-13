@@ -2,22 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# don't put duplicate lines in the history. See bash(1) for more options
-# ... or force ignoredups and ignorespace
-export HISTCONTROL=ignoredups:ignorespace:erasedups
-export HISTTIMEFORMAT="[%F %T] "
-# When the shell exits, append to the history file instead of overwriting it
-shopt -s histappend
-
-[[ -d ~/.history ]] || mkdir ~/.history
-[[ -d ~/.history ]] && chmod 0700 ~/.history
-export HISTFILE=~/.history/main
-export HISTFILESIZE=0
-# Undocumented feature which sets the size to "unlimited".
-# http://stackoverflow.com/questions/9457233/unlimited-bash-history
-export HISTFILESIZE=
-export HISTSIZE=
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+source ~/.sensible.bash
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -121,3 +106,9 @@ if [ -f ~/.bashrc.local ]; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/private/tmp/google-cloud-sdk/path.bash.inc' ]; then source '/private/tmp/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/private/tmp/google-cloud-sdk/completion.bash.inc' ]; then source '/private/tmp/google-cloud-sdk/completion.bash.inc'; fi
