@@ -37,8 +37,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'Julian/vim-textobj-variable-segment'
 
 Plug 'pangloss/vim-javascript'
-"Plug 'vim-syntastic/syntastic'
-Plug 'neomake/neomake'
+Plug 'w0rp/ale'
 Plug 'sbdchd/neoformat'
 
 Plug 'vimwiki/vimwiki'
@@ -69,7 +68,7 @@ endif
 " Allow editing of crontab files.
 set backupskip=/tmp/*,/private/tmp/*
 
-let g:vimwiki_list = [{'path': '~/drive/vimwiki/'}]
+let g:vimwiki_list = [{'path': '~/notes/vimwiki/'}]
 
 " % for tags
 source $VIMRUNTIME/macros/matchit.vim
