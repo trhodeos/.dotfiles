@@ -44,6 +44,8 @@ Plug 'vimwiki/vimwiki'
 
 Plug 'sheerun/vim-polyglot'
 
+Plug 'itchyny/lightline.vim'
+
 if $HOME !~ '.*google.*'
   " Ack search integration.
   Plug 'mileszs/ack.vim'
@@ -76,12 +78,6 @@ let g:vimwiki_list = [{'path': '~/notes/vimwiki/'}]
 source $VIMRUNTIME/macros/matchit.vim
 
 set backspace=indent,eol,start
-
-"set clipboard=unnamed
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
 
 function EnableNormalTextChrome()
   " indentLine
@@ -155,21 +151,16 @@ colorscheme solarized
 "###############################################################################
 
 "-------------------------------------------------------------------------------
-" Syntastic
+" Ack.vim
 "-------------------------------------------------------------------------------
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-let g:neomake_java_javac_maker = {
-        \ 'errorformat':
-            \ '%E%f:%l: %trror: %m,' .
-            \ '%W%f:%l: %tarning: %m,' .
-            \ '%E%f:%l: %m,'.
-            \ '%Z%p^,'.
-            \ '%-G%.%#',
-        \ }
-let g:neomake_java_enabled_makers = ['javac']
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+nmap <M-k>    :Ack! "\b<cword>\b" <CR>
+nmap <Esc>k   :Ack! "\b<cword>\b" <CR>
+nmap <M-S-k>  :Ggrep! "\b<cword>\b" <CR>
+nmap <Esc>K   :Ggrep! "\b<cword>\b" <CR>
 
 "-------------------------------------------------------------------------------
 " YCM
@@ -216,5 +207,8 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'options':     '+m',
 \   'tmux_height': '40%'
 \ })<CR>
+
+set laststatus=2
+set noshowmode
 
 filetype plugin indent on
