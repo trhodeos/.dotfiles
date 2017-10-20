@@ -42,6 +42,8 @@ Plug 'sbdchd/neoformat'
 
 Plug 'vimwiki/vimwiki'
 
+Plug 'sheerun/vim-polyglot'
+
 if $HOME !~ '.*google.*'
   " Ack search integration.
   Plug 'mileszs/ack.vim'
