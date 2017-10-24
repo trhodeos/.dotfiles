@@ -2,6 +2,7 @@
 .vim/init.vim
 
 .vim/bundle/*
+.vim/plugged/*
 .vim/undo
 .vim/view
 .vim/autoload/plug.vim*

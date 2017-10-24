@@ -11,5 +11,9 @@
 	ll = log --stat
 	lg = log
 	lp = log -p
+	ci = commit
+	addnw = !sh -c 'git diff -w --no-color \"$@\" | git apply --cached --ignore-whitespace' -
 [multi]
 	exporttags = default
+[color]
+	ui = true
