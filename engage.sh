@@ -121,12 +121,12 @@ function setup_git {
 }
 
 function setup_ssh {
-    ## ~/.ssh
-    # Just dir/permissions.  Don't wanna autolink config...
-    mkdir -p ~/.ssh
-    chmod 700 ~/.ssh
-    [ -f ~/.ssh/authorized_keys ] && chmod -f 600 ~/.ssh/authorized_keys
-    chown -R $USER ~/.ssh
+  ## ~/.ssh
+  # Just dir/permissions.  Don't wanna autolink config...
+  mkdir -p ~/.ssh
+  chmod 700 ~/.ssh
+  [ -f ~/.ssh/authorized_keys ] && chmod -f 600 ~/.ssh/authorized_keys
+  chown -R $USER ~/.ssh
 }
 
 function install_zsh {

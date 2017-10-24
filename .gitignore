@@ -6,9 +6,6 @@
 .vim/undo
 .vim/view
 .vim/autoload/plug.vim*
-.newsbeuter/*.db
-.newsbeuter/*.lock
-.newsbeuter/history.*
-.netrwhist
+oh-my-zsh/*
 
 tags
