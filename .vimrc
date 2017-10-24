@@ -1,9 +1,18 @@
 filetype off
 set nocompatible
 
+" Install vim-plug if it's missing. Need curl(1) though.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
 " External plugins
 " vim-plug set up
 call plug#begin('~/.vim/plugged')
+
+Plug 'luochen1990/rainbow'
 
 Plug 'xolox/vim-misc'
 Plug 'Valloric/MatchTagAlways'
@@ -46,33 +55,14 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'itchyny/lightline.vim'
 
-if $HOME !~ '.*google.*'
-  " Ack search integration.
-  Plug 'mileszs/ack.vim'
-
-  Plug 'Valloric/YouCompleteMe'
-
-  Plug 'davidzchen/vim-bazel'
-
-  Plug 'google/vim-maktaba'
-  Plug 'google/vim-codefmt'
-  Plug 'google/vim-glaive'
-endif
-
-call plug#end()
-
-if $HOME !~ '.*google.*'
-  call glaive#Install()
-  Glaive codefmt plugin[mappings]
-
-  " Some tab/space settings.
-  set tabstop=8 shiftwidth=2 softtabstop=2 expandtab
+if filereadable(glob("~/.vimrc.local"))
+  source ~/.vimrc.local
+else
+  call plug#end()
 endif
 
 " Allow editing of crontab files.
 set backupskip=/tmp/*,/private/tmp/*
-
-let g:vimwiki_list = [{'path': '~/notes/vimwiki/'}]
 
 " % for tags
 source $VIMRUNTIME/macros/matchit.vim
@@ -133,10 +123,6 @@ map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
-if filereadable(glob("~/.vimrc.local"))
-  source ~/.vimrc.local
-endif
-
 "-------------------------------------------------------------------------------
 " Color set up.
 "-------------------------------------------------------------------------------
@@ -145,9 +131,66 @@ set background=dark
 let g:solarized_termtrans = 1
 colorscheme solarized
 
+set hidden                        " Handle multiple buffers better.
+set title                         " Set the terminal's title
+set number                        " Show line numbers.
+set ruler                         " Show cursor position.
+set cursorline                    " Highlight current line
+set wildmode=list:longest         " Complete files like a shell.
+set wildmenu                      " Enhanced command line completion.
+set wildignore=*.o,*.obj,*~       " Stuff to ignore when tab completing
+set wildignore+=*/.git/objects/*
+set wildignore+=*/.git/refs/*
+set wildignore+=*/.hg/*,*/.svn/*
+set wildignore+=*/tmp/*,*.so
+set wildignore+=*.swp,*.zip
+
+" small tweaks
+set ttyfast                       " indicate a fast terminal connection
+set tf                            " improve redrawing for newer computers
+set nolazyredraw                  " turn off lazy redraw
+set shell=/bin/zsh
+
+set visualbell
+set noerrorbells
+set history=1000                  " Store lots of :cmdline history
+
+set scrolloff=3
+set sidescrolloff=7
+
+set splitbelow
+set splitright
+
+set sidescroll=1
+set mouse-=a
+set mousehide
+if !has("nvim")
+  set ttymouse=xterm2
+endif
+if exists("+inccommand")
+  set inccommand=nosplit
+endif
+
+set nobackup                      " Don't make a backup before overwriting a file.
+set nowritebackup                 " And again.
+set directory=/tmp                " Keep swap files in one location
+set noswapfile
+set timeoutlen=500
+
+set laststatus=2                  " Show the status line all the time
+
+" clear trailing spaces on save
+autocmd BufWritePre * kz|:%s/\s\+$//e|'z
+
 "###############################################################################
 " Plugins
 "###############################################################################
+
+"-------------------------------------------------------------------------------
+" vimwiki
+"-------------------------------------------------------------------------------
+
+let g:vimwiki_list = [{'path': '~/notes/vimwiki/'}]
 
 "-------------------------------------------------------------------------------
 " Ack.vim
@@ -260,5 +303,4 @@ function! s:MaybeUpdateLightline()
     call lightline#update()
   end
 endfunction
-
 filetype plugin indent on
