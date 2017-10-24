@@ -1,11 +1,15 @@
-#
-# Utilities
-#
+##########################################################################
+# Zsh sensible configuration                                             #
+# (https://github.com/hanjianwei/zsh-sensible/blob/master/sensible.zsh). #
+##########################################################################
+
+# It's likely I'll be setting EDITOR=nvim somewhere in my zsh, which will
+# cause zsh to switch to vi-mode if I re-exec (exec zsh). Prevent this.
+bindkey -e
 
 # History
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=5000
-SAVEHIST=5000
+HISTFILE="$HOME/.zsh_history" HISTSIZE=500000
+SAVEHIST=500000
 
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
@@ -51,3 +55,15 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 
 # Allow arrow selection
 zstyle ':completion:*:*:*:*:*' menu select
+
+##############################
+# Random user configuration. #
+##############################
+
+# Use ag to supply fzf with filenames instead of find, it's faster.
+export FZF_DEFAULT_COMMAND="ag -i --nocolor --nogroup --hidden \
+  --ignore .git \
+  --ignore .svn \
+  --ignore .hg \
+  --ignore .DS_Store \
+  -g ''"
