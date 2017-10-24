@@ -21,7 +21,7 @@ scriptdir=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 dir=~/.dotfiles                                      # dotfiles directory
 olddir=~/.dotfiles_old                               # old dotfiles backup directory
 olddir_current=$olddir/"$(date +%d-%m-%Y)"
-files=".zshrc-extra .vimrc .vim .ctags .tmux.conf .bashrc .bashrc.osx"
+files=".zshrc-extra .vimrc .vim .ctags .tmux.conf .ideavimrc .ackrc"
 folders="etc"
 
 ##########
