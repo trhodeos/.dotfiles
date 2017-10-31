@@ -1,6 +1,7 @@
 filetype off
 set nocompatible
 
+" Stolen from https://github.com/aktau/dotfiles/blob/master/.vimrc
 " Install vim-plug if it's missing. Need curl(1) though.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
