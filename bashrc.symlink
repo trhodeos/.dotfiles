@@ -49,6 +49,8 @@ if [ -f ~/.bashrc.local ]; then
   . ~/.bashrc.local
 fi
 
+export PATH="$HOME/.dotfiles/bin:$PATH"
+
 export FZF_DEFAULT_COMMAND='ag --hidden  -g ""'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 

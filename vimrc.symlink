@@ -47,7 +47,6 @@ Plug 'kana/vim-textobj-user'
 Plug 'Julian/vim-textobj-variable-segment'
 
 Plug 'pangloss/vim-javascript'
-Plug 'w0rp/ale'
 Plug 'sbdchd/neoformat'
 
 Plug 'vimwiki/vimwiki'
@@ -257,23 +256,23 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 set laststatus=2
 set noshowmode
 
-let g:lightline = {
-\ 'colorscheme': 'wombat',
-\ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-\ },
-\ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK'
-\ },
-\ 'component_type': {
-\   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error'
-\ },
-\ }
+"let g:lightline = {
+"\ 'colorscheme': 'wombat',
+"\ 'active': {
+"\   'left': [['mode', 'paste'], ['filename', 'modified']],
+"\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+"\ },
+"\ 'component_expand': {
+"\   'linter_warnings': 'LightlineLinterWarnings',
+"\   'linter_errors': 'LightlineLinterErrors',
+"\   'linter_ok': 'LightlineLinterOK'
+"\ },
+"\ 'component_type': {
+"\   'readonly': 'error',
+"\   'linter_warnings': 'warning',
+"\   'linter_errors': 'error'
+"\ },
+"\ }
 
 function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
@@ -296,12 +295,4 @@ function! LightlineLinterOK() abort
   return l:counts.total == 0 ? '✓ ' : ''
 endfunction
 
-autocmd User ALELint call s:MaybeUpdateLightline()
-
-" Update and show lightline but only if it's visible (e.g., not in Goyo)
-function! s:MaybeUpdateLightline()
-  if exists('#lightline')
-    call lightline#update()
-  end
-endfunction
 filetype plugin indent on
