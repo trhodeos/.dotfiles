@@ -24,15 +24,17 @@ Plug 'Yggdroot/indentLine'
 " Show trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
 
-Plug 'tpope/vim-dispatch'
-
 Plug 'ervandew/supertab'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar'
+
+Plug 'mhinz/vim-signify'
 
 Plug 'altercation/vim-colors-solarized'
 
@@ -51,15 +53,18 @@ Plug 'sbdchd/neoformat'
 
 Plug 'vimwiki/vimwiki'
 
-Plug 'sheerun/vim-polyglot'
-
 Plug 'itchyny/lightline.vim'
+
+Plug 'natebosch/vim-lsc'
 
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 else
+  Plug 'valloric/YouCompleteMe'
   call plug#end()
 endif
+
+let g:lsc_auto_map = v:true " Use defaults
 
 " Allow editing of crontab files.
 set backupskip=/tmp/*,/private/tmp/*
@@ -122,6 +127,14 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+
+"-------------------------------------------------------------------------------
+" netrw set up.
+"-------------------------------------------------------------------------------
+
+" Get rid of the banner
+let g:netrw_banner = 0
+
 
 "-------------------------------------------------------------------------------
 " Color set up.
@@ -251,28 +264,16 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \ })<CR>
 
 "-------------------------------------------------------------------------------
+" vim-markdown
+"-------------------------------------------------------------------------------
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['html', 'python', 'bash=sh', 'java', 'cpp']
+
+"-------------------------------------------------------------------------------
 " lightline
 "-------------------------------------------------------------------------------
 set laststatus=2
 set noshowmode
-
-"let g:lightline = {
-"\ 'colorscheme': 'wombat',
-"\ 'active': {
-"\   'left': [['mode', 'paste'], ['filename', 'modified']],
-"\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
-"\ },
-"\ 'component_expand': {
-"\   'linter_warnings': 'LightlineLinterWarnings',
-"\   'linter_errors': 'LightlineLinterErrors',
-"\   'linter_ok': 'LightlineLinterOK'
-"\ },
-"\ 'component_type': {
-"\   'readonly': 'error',
-"\   'linter_warnings': 'warning',
-"\   'linter_errors': 'error'
-"\ },
-"\ }
 
 function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
@@ -294,5 +295,14 @@ function! LightlineLinterOK() abort
   let l:all_non_errors = l:counts.total - l:all_errors
   return l:counts.total == 0 ? '✓ ' : ''
 endfunction
+
+"-------------------------------------------------------------------------------
+" vim-signify
+"-------------------------------------------------------------------------------
+
+let g:signify_vcs_list = ['git', 'hg', 'perforce']
+let g:signify_skip_filename_pattern = ['\.pipertmp.*']
+let g:signify_vcs_cmds = {'perforce':'DIFF=%d" -U0" citcdiff %f || [[ $? == 1 ]]'}
+
 
 filetype plugin indent on
