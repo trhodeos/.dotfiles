@@ -61,6 +61,8 @@ if [ -f ~/.ps1 ]; then
 fi
 precmd_functions+=(set_ps1)
 
+export GOPATH="$HOME/go"
+
 export PATH="$HOME/bin:$HOME/.dotfiles/bin:$PATH"
 
 export FZF_DEFAULT_COMMAND='ag --hidden  -g ""'
