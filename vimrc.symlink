@@ -49,13 +49,14 @@ Plug 'kana/vim-textobj-user'
 Plug 'Julian/vim-textobj-variable-segment'
 
 Plug 'pangloss/vim-javascript'
-Plug 'sbdchd/neoformat'
 
 Plug 'vimwiki/vimwiki'
 
 Plug 'itchyny/lightline.vim'
+Plug 'w0rp/ale'
 
-Plug 'natebosch/vim-lsc'
+Plug 'prabirshrestha/async.vim'
+Plug 'prabirshrestha/vim-lsp'
 
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
@@ -63,8 +64,6 @@ else
   Plug 'valloric/YouCompleteMe'
   call plug#end()
 endif
-
-let g:lsc_auto_map = v:true " Use defaults
 
 " Allow editing of crontab files.
 set backupskip=/tmp/*,/private/tmp/*
@@ -97,7 +96,7 @@ call EnableNormalTextChrome()
 let mapleader = "\<SPACE>"
 
 " copy file path
-nmap ,cp :let @+=expand("%:p")<CR>
+nmap <leader>cp :let @+=expand("%:p")<CR>
 
 " search settings
 set ignorecase
@@ -304,5 +303,11 @@ let g:signify_vcs_list = ['git', 'hg', 'perforce']
 let g:signify_skip_filename_pattern = ['\.pipertmp.*']
 let g:signify_vcs_cmds = {'perforce':'DIFF=%d" -U0" citcdiff %f || [[ $? == 1 ]]'}
 
+
+"-------------------------------------------------------------------------------
+" ale
+"-------------------------------------------------------------------------------
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 filetype plugin indent on
