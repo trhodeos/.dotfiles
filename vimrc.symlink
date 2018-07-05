@@ -36,6 +36,8 @@ Plug 'tpope/vim-vinegar'
 
 Plug 'mhinz/vim-signify'
 
+Plug 'fatih/vim-go'
+
 Plug 'altercation/vim-colors-solarized'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -51,12 +53,15 @@ Plug 'Julian/vim-textobj-variable-segment'
 Plug 'pangloss/vim-javascript'
 
 Plug 'vimwiki/vimwiki'
+Plug 'tbabej/knowledge'
 
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 
 Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
+
+Plug 'stevearc/vim-arduino'
 
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
@@ -261,6 +266,15 @@ nnoremap <silent> <Leader><Enter> :call fzf#run({
 \   'options':     '+m',
 \   'tmux_height': '40%'
 \ })<CR>
+
+"
+" vim-arduino
+"
+let g:arduino_cmd = 'arduino.sh'
+let g:arduino_dir = '/Applications/Arduino.app/Contents/MacOS/'
+let g:arduino_serial_cmd = 'tmux split-window "picocom {port} -b {baud} -l"'
+
+
 
 "-------------------------------------------------------------------------------
 " vim-markdown
