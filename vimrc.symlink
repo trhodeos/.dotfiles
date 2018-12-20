@@ -24,7 +24,15 @@ Plug 'Yggdroot/indentLine'
 " Show trailing whitespace
 Plug 'ntpeters/vim-better-whitespace'
 
-Plug 'ervandew/supertab'
+Plug 'metalelf0/supertab'
+
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -48,8 +56,6 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'kana/vim-textobj-user'
 Plug 'Julian/vim-textobj-variable-segment'
 
-Plug 'pangloss/vim-javascript'
-
 Plug 'vimwiki/vimwiki'
 
 Plug 'itchyny/lightline.vim'
@@ -61,9 +67,11 @@ Plug 'prabirshrestha/vim-lsp'
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 else
-  Plug 'valloric/YouCompleteMe'
+  "Plug 'valloric/YouCompleteMe'
   call plug#end()
 endif
+
+let g:deoplete#enable_at_startup = 1
 
 " Allow editing of crontab files.
 set backupskip=/tmp/*,/private/tmp/*

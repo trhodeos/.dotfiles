@@ -1,9 +1,11 @@
 set -g default-terminal "screen-256color"
-#if-shell "[[ `tmux -V | cut -d' ' -f2` -ge 2.1 ]]" 'set -ga terminal-overrides ",screen-256color:Tc"'
 set -g history-limit 30000
 
-set -g set-titles on                        # set terminal title
+# set terminal title
+set -g set-titles on
 set -g set-titles-string '#W ● #h'
+# So there isn't a delay in neovim:
+set -g escape-time 10
 
 new-session
 
