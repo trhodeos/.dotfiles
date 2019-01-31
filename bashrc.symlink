@@ -74,4 +74,33 @@ if [ -f '/private/tmp/google-cloud-sdk/path.bash.inc' ]; then source '/private/t
 # The next line enables shell command completion for gcloud.
 if [ -f '/private/tmp/google-cloud-sdk/completion.bash.inc' ]; then source '/private/tmp/google-cloud-sdk/completion.bash.inc'; fi
 
-export PATH=$HOME/bin:$PATH
+export BOOKMARKS=~/bookmarks
+# add a bookmark for the current directory
+function abm() {
+  touch "$BOOKMARKS"
+  pwd >> "$BOOKMARKS"
+  sort -u -o "$BOOKMARKS" "$BOOKMARKS"
+}
+
+# delete bookmark of current directory
+function dbm() {
+  touch "$BOOKMARKS"
+  cat "$BOOKMARKS" | grep -v "^$(pwd)$" >| "$BOOKMARKS"
+}
+
+# jump to a bookmark
+function bm() {
+  touch "$BOOKMARKS"
+  cd "$(cat "$BOOKMARKS" | fzf --height 40% --reverse --inline-info)"
+}
+
+# Quick up n levels
+# Requires: n >= 0
+function up() {
+  # default to 1
+  declare -i d=${@:-1};
+  # ensure non-negative
+  (($d < 0)) && (>&2 echo "up: Error: negative value provided") && return 1;
+  # remove last d directories from pwd, append "/" in case result is empty
+  cd "$(pwd | sed -E 's;(/[^/]*){0,'$d'}$;;')/";
+}
