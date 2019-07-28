@@ -8,6 +8,14 @@ source ~/.sensible.bash
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
+# Ignore these commands in history
+HISTIGNORE='ls:bg:fg:history'
+# Add a timestamp to history
+HISTTIMEFORMAT='%F %T '
+# Use one command per line
+shopt -s cmdhist
+# Store history immediately
+PROMPT_COMMAND='history -a'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -28,8 +36,8 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
   . /etc/bash_completion
 fi
 
-export VISUAL=nvim
-export EDITOR=nvim
+export VISUAL=vim
+export EDITOR=vim
 
 # fhe - repeat history edit
 writecmd (){ perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }' ; }

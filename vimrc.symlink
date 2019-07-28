@@ -1,14 +1,6 @@
 filetype off
 set nocompatible
 
-" Stolen from https://github.com/aktau/dotfiles/blob/master/.vimrc
-" Install vim-plug if it's missing. Need curl(1) though.
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
 " External plugins
 " vim-plug set up
 call plug#begin('~/.vim/plugged')
@@ -21,25 +13,17 @@ Plug 'xolox/vim-misc'
 Plug 'Yggdroot/indentLine'
 
 " Show trailing whitespace
-Plug 'ntpeters/vim-better-whitespace'
+"Plug 'ntpeters/vim-better-whitespace'
 
-Plug 'metalelf0/supertab'
-
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+"Plug 'metalelf0/supertab'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-fugitive'
+"Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar'
+"Plug 'tpope/vim-vinegar'
 
 Plug 'mhinz/vim-signify'
 
@@ -55,20 +39,19 @@ Plug 'google/vim-ft-bzl'
 Plug 'junegunn/vim-peekaboo'
 
 Plug 'kana/vim-textobj-user'
-Plug 'Julian/vim-textobj-variable-segment'
+"Plug 'Julian/vim-textobj-variable-segment'
 
 Plug 'vimwiki/vimwiki'
 
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
 
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+"Plug 'prabirshrestha/async.vim'
+"Plug 'prabirshrestha/vim-lsp'
 
 if filereadable(glob("~/.vimrc.local"))
   source ~/.vimrc.local
 else
-  "Plug 'valloric/YouCompleteMe'
   call plug#end()
 endif
 
@@ -143,7 +126,6 @@ map <leader>et :tabe %%
 " Get rid of the banner
 let g:netrw_banner = 0
 
-
 "-------------------------------------------------------------------------------
 " Color set up.
 "-------------------------------------------------------------------------------
@@ -192,16 +174,28 @@ if exists("+inccommand")
   set inccommand=nosplit
 endif
 
-set nobackup            " Don't make a backup before overwriting a file.
-set nowritebackup       " And again.
-set directory=/tmp      " Keep swap files in one location
-set noswapfile
-set timeoutlen=500
+" Protect changes between writes. Default values of
+" updatecount (200 keystrokes) and updatetime
+" (4 seconds) are fine
+set swapfile
+set directory^=~/.vim/swap//
 
-set laststatus=2        " Show the status line all the time
+" protect against crash-during-write
+set writebackup
+" but do not persist backup after successful write
+set nobackup
+" use rename-and-write-new method whenever safe
+set backupcopy=auto
+" patch required to honor double slash at end
+if has("patch-8.1.0251")
+  " consolidate the writebackups -- not a big
+  " deal either way, since they usually get deleted
+  set backupdir^=~/.vim/backup//
+end
 
-" clear trailing spaces on save
-autocmd BufWritePre * kz|:%s/\s\+$//e|'z
+" persist the undo tree for each file
+set undofile
+set undodir^=~/.vim/undo//
 
 "###############################################################################
 " Plugins
@@ -212,16 +206,6 @@ autocmd BufWritePre * kz|:%s/\s\+$//e|'z
 "-------------------------------------------------------------------------------
 
 let g:vimwiki_list = [{'path': '~/notes/vimwiki/'}]
-
-"-------------------------------------------------------------------------------
-" Ack.vim
-"-------------------------------------------------------------------------------
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-nmap <M-k>    :Ack! "\b<cword>\b" <CR>
-nmap <M-S-k>  :Ggrep! "\b<cword>\b" <CR>
 
 "-------------------------------------------------------------------------------
 " YCM
@@ -237,11 +221,6 @@ nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
 
 nnoremap gp `[v`]
-
-"-------------------------------------------------------------------------------
-" SuperTab
-"-------------------------------------------------------------------------------
-let g:SuperTabDefaultCompletionType = '<C-n>'
 
 "-------------------------------------------------------------------------------
 " fzf
