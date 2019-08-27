@@ -66,7 +66,7 @@ fi
 if [ -f ~/.ps1 ]; then
   . ~/.ps1
 fi
-preexec_functions+=(set_ps1)
+precmd_functions+=(set_ps1)
 
 export GOPATH="$HOME/go"
 
