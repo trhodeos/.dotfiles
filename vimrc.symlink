@@ -9,13 +9,28 @@ Plug 'luochen1990/rainbow'
 
 Plug 'xolox/vim-misc'
 
+Plug 'SirVer/ultisnips'
+
 " Display indention-levels as characters.
 Plug 'Yggdroot/indentLine'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+Plug 'Shougo/deoplete-clangx'
+Plug 'carlitux/deoplete-ternjs'
+Plug 'deoplete-plugins/deoplete-go'
+Plug 'deoplete-plugins/deoplete-jedi'
 
 " Show trailing whitespace
 "Plug 'ntpeters/vim-better-whitespace'
 
-"Plug 'metalelf0/supertab'
+Plug 'metalelf0/supertab'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -205,22 +220,30 @@ set undodir^=~/.vim/undo//
 " vimwiki
 "-------------------------------------------------------------------------------
 
-let g:vimwiki_list = [{'path': '~/notes/vimwiki/'}]
+let g:vimwiki_list = [{'path': '~/workspace/personal-wiki/'}]
 
 "-------------------------------------------------------------------------------
 " YCM
 "-------------------------------------------------------------------------------
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"
+"let g:EclimCompletionMethod = 'omnifunc'
+"
+"nnoremap <leader>jd :YcmCompleter GoTo<CR>
+"
+"" Add the ability to GoTo definition under cursor.
+"nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
+"
+"nnoremap gp `[v`]
 
-let g:EclimCompletionMethod = 'omnifunc'
-
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-
-" Add the ability to GoTo definition under cursor.
-nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
-
-nnoremap gp `[v`]
+"-------------------------------------------------------------------------------
+" ultisnips
+"-------------------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger="<c-g>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsSnippetDirectories=[$HOME . '/.dotfiles/vim/UltiSnips/']
 
 "-------------------------------------------------------------------------------
 " fzf

@@ -1,4 +1,9 @@
 [alias]
         d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
         s = status -s
-
+[include]
+        path = ~/.gitconfig.local
+[core]
+        excludesfile = /home/trhodes/.gitignore_global
+[user]
+        # These values are set in ~/.gitconfig.local
