@@ -5,10 +5,15 @@ set nocompatible
 " vim-plug set up
 call plug#begin('~/.vim/plugged')
 
+" Order matters here. See https://github.com/junegunn/vim-plug/issues/365 and
+" https://github.com/SirVer/ultisnips/issues/512#issuecomment-238036845
+Plug 'ervandew/supertab'
+
 Plug 'luochen1990/rainbow'
 
 Plug 'xolox/vim-misc'
 
+Plug 'vimwiki/vimwiki'
 Plug 'SirVer/ultisnips'
 
 " Display indention-levels as characters.
@@ -29,8 +34,6 @@ Plug 'deoplete-plugins/deoplete-jedi'
 
 " Show trailing whitespace
 "Plug 'ntpeters/vim-better-whitespace'
-
-Plug 'metalelf0/supertab'
 
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
@@ -55,8 +58,6 @@ Plug 'junegunn/vim-peekaboo'
 
 Plug 'kana/vim-textobj-user'
 "Plug 'Julian/vim-textobj-variable-segment'
-
-Plug 'vimwiki/vimwiki'
 
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
@@ -135,15 +136,12 @@ map <leader>ev :vsp %%
 map <leader>et :tabe %%
 
 "-------------------------------------------------------------------------------
-" netrw set up.
+" General vim
 "-------------------------------------------------------------------------------
 
 " Get rid of the banner
 let g:netrw_banner = 0
 
-"-------------------------------------------------------------------------------
-" Color set up.
-"-------------------------------------------------------------------------------
 syntax enable
 set background=dark
 let g:solarized_termtrans = 1
@@ -220,30 +218,18 @@ set undodir^=~/.vim/undo//
 " vimwiki
 "-------------------------------------------------------------------------------
 
+let g:vimwiki_table_mappings=0
 let g:vimwiki_list = [{'path': '~/workspace/personal-wiki/'}]
-
-"-------------------------------------------------------------------------------
-" YCM
-"-------------------------------------------------------------------------------
-"let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-"
-"let g:EclimCompletionMethod = 'omnifunc'
-"
-"nnoremap <leader>jd :YcmCompleter GoTo<CR>
-"
-"" Add the ability to GoTo definition under cursor.
-"nnoremap <leader>jd :YcmCompleter GoToDeclaration<CR>
-"
-"nnoremap gp `[v`]
 
 "-------------------------------------------------------------------------------
 " ultisnips
 "-------------------------------------------------------------------------------
-let g:UltiSnipsExpandTrigger="<c-g>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsSnippetDir='UltiSnips'
 let g:UltiSnipsSnippetDirectories=[$HOME . '/.dotfiles/vim/UltiSnips/']
+
 
 "-------------------------------------------------------------------------------
 " fzf
