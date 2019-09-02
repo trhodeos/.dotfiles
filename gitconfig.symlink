@@ -1,0 +1,4 @@
+[alias]
+        d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+        s = status -s
+
