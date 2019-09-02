@@ -15,6 +15,7 @@ Plug 'xolox/vim-misc'
 
 Plug 'vimwiki/vimwiki'
 Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Display indention-levels as characters.
 Plug 'Yggdroot/indentLine'
