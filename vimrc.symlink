@@ -221,6 +221,7 @@ set undodir^=~/.vim/undo//
 
 let g:vimwiki_table_mappings=0
 let g:vimwiki_list = [{'path': '~/workspace/personal-wiki/'}]
+let g:vimwiki_folding = 'expr'
 
 "-------------------------------------------------------------------------------
 " ultisnips
