@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/trhodes/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -65,7 +65,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git alias-finder)
+plugins=(git alias-tips extract tmux history common-aliases extract zsh-completions zsh-dircolors-solarized)
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -77,6 +78,11 @@ bindkey -v
 export KEYTIMEOUT=1
 
 export PAGER="less -X -F"
+
+# Appends every command to the history file once it is executed
+setopt inc_append_history
+# Reloads the history whenever you use it
+setopt share_history
 
 precmd() { RPROMPT="" }
 function zle-line-init zle-keymap-select {
@@ -103,4 +109,9 @@ bindkey '^e' end-of-line
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+[ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ] && source \
+    /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ~/.zsh/zsh-async/async.zsh ] && source ~/.zsh/zsh-async/async.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
