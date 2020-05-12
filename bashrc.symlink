@@ -2,7 +2,12 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-[[ -f ~/.bash-preexec.sh ]] && source ~/.bash-preexec.sh
+if [[ ! -f ~/.bash-preexec.sh ]]; then
+  curl https://raw.githubusercontent.com/rcaloras/bash-preexec/master/bash-preexec.sh -o ~/.bash-preexec.sh
+else
+  source ~/.bash-preexec.sh
+fi
+
 source ~/.sensible.bash
 
 export HISTSIZE=100000                   # big big history
@@ -12,6 +17,7 @@ shopt -s histappend                      # append to history, don't overwrite it
 HISTIGNORE='ls:bg:fg:history'
 # Add a timestamp to history
 HISTTIMEFORMAT='%F %T '
+export HISTFILE="$HOME/.history/$(date +%F)-$$"
 # Use one command per line
 shopt -s cmdhist
 # Store history immediately
@@ -41,8 +47,16 @@ export EDITOR=vim
 # fhe - repeat history edit
 writecmd (){ perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }' ; }
 
+# Fhind over all history.
 fh() {
-  cat $HOME/.history/* | grep -v -e '#.*' | fzf +s --tac | writecmd
+  find ~/.history/* | sort  | xargs -I{} grep -v -e '#.*' {} | fzf +s --tac | writecmd
+}
+# Bind fh to ctrl-e
+bind "'\C-e':'fh\n'"
+
+n() {
+  printf "# $(date +%F)" >> ~/notes/notes.txt
+  vim "+ normal Go" ~/notes/notes.txt
 }
 
 if [[ "$(uname -a)" =~ "Darwin" && -f ~/.bashrc.osx ]]; then

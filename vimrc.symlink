@@ -298,7 +298,10 @@ endfunction
 
 let g:signify_vcs_list = ['git', 'hg', 'perforce']
 let g:signify_skip_filename_pattern = ['\.pipertmp.*']
-let g:signify_vcs_cmds = {'perforce':'DIFF=%d" -U0" citcdiff %f || [[ $? == 1 ]]'}
+let g:signify_vcs_cmds = {
+    \ 'perforce': 'p4 info >& /dev/null && env G4MULTIDIFF=0 P4DIFF=%d p4 diff -dU0 %f',
+    \ 'hg': 'hg diff --config extensions.color=! -r "clroots(.)^" --config defaults.diff= --nodates -U0 -- %f',
+    \ }
 
 
 "-------------------------------------------------------------------------------

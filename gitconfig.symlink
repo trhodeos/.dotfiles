@@ -6,4 +6,6 @@
 [core]
         excludesfile = /home/trhodes/.gitignore_global
 [user]
+	name = Tyler Rhodes
+	email = 767526+trhodeos@users.noreply.github.com
         # These values are set in ~/.gitconfig.local
