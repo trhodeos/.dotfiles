@@ -13,9 +13,12 @@ Plug 'luochen1990/rainbow'
 
 Plug 'xolox/vim-misc'
 
+Plug 'mileszs/ack.vim'
 Plug 'vimwiki/vimwiki'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jremmen/vim-ripgrep'
 
 " Display indention-levels as characters.
 Plug 'Yggdroot/indentLine'
@@ -309,5 +312,15 @@ let g:signify_vcs_cmds = {
 "-------------------------------------------------------------------------------
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+if executable('rg')
+  set grepprg=rg\ --hidden\ --color=never
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'rg --files --hidden --color=never * %s'
+endif
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 filetype plugin indent on

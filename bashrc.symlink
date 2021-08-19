@@ -8,7 +8,7 @@ else
   source ~/.bash-preexec.sh
 fi
 
-source ~/.sensible.bash
+# source ~/.sensible.bash
 
 export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history

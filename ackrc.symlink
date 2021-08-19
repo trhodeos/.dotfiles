@@ -1,3 +1,7 @@
 --ignore-dir=.idea/
 --ignore-dir=build/
 --ignore-dir=node_modules/
+--ignore-file=match:/bazel-.*/
+--ignore-dir=bazel-out
+--ignore-dir=bazel-bin
+--ignore-dir=bazel-genfiles
