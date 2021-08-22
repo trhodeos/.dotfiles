@@ -323,4 +323,14 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
+command! -count=1 HFiles call fzf#run({
+  \ 'source': 'git log HEAD -n <count> --diff-filter=MA --name-only --pretty=format: | sed -e /^$/d',
+  \ 'sink': 'tabedit',
+  \ 'options': '--multi'
+  \ })
+
+nnoremap <leader>hf HFiles
+nnoremap <silent> <leader>hf :HFiles<CR>
+nnoremap <silent> <leader>gf :GFiles<CR>
+
 filetype plugin indent on
