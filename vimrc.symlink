@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'ervandew/supertab'
 
 Plug 'luochen1990/rainbow'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'xolox/vim-misc'
 
@@ -19,6 +20,8 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'rust-lang/rust.vim'
+
 
 " Display indention-levels as characters.
 Plug 'Yggdroot/indentLine'
@@ -76,6 +79,7 @@ else
 endif
 
 let g:deoplete#enable_at_startup = 1
+let g:rustfmt_autosave = 1
 
 " Allow editing of crontab files.
 set backupskip=/tmp/*,/private/tmp/*

@@ -5,6 +5,7 @@
         path = ~/.gitconfig.local
 [core]
         excludesfile = /home/trhodes/.gitignore_global
+	editor = nvim
 [user]
 	name = Tyler Rhodes
 	email = 767526+trhodeos@users.noreply.github.com
