@@ -1,2 +1,3 @@
 # Homebrew
 export PATH="/usr/local/bin:/usr/local/opt/coreutils/libexec/gnubin:/opt/homebrew/bin:$PATH"
+source `brew --prefix git`/etc/bash_completion.d/git-prompt.sh

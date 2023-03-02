@@ -125,7 +125,9 @@ function up() {
   # remove last d directories from pwd, append "/" in case result is empty
   cd "$(pwd | sed -E 's;(/[^/]*){0,'$d'}$;;')/";
 }
-. "$HOME/.cargo/env"
+if [ -f ~/.cargo/env ]; then
+  . ~/.cargo/env
+fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
